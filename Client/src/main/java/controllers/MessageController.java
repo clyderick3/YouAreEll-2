@@ -7,7 +7,7 @@ import org.json.simple.JSONArray;
 
 public class MessageController {
 
-    private HashSet<Message> messagesSeen = new HashSet<>();
+    public HashSet<Message> messagesSeen = new HashSet<>(); //TODO change public back to private after testing.
     // why a HashSet??
 
     private MessageController(){
