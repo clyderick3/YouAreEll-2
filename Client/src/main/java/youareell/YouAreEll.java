@@ -12,9 +12,13 @@ public class YouAreEll {
 
     public static void main(String[] args) {
         // hmm: is this Dependency Injection?
+
         ServerController serverController = ServerController.shared();
         serverController.idGet();
         serverController.messageGet();
+
+//        MessageController messageController = MessageController.shared();
+//        System.out.println(messageController.messagesSeen);
 
 //        YouAreEll urlhandler = new YouAreEll(
 //            new TransactionController(
