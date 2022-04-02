@@ -22,7 +22,11 @@ public class Message implements Comparable {
     private String seqId = "";
 
     public Message (String message, String fromId, String toId, String timestamp, String seqId) {
-
+        this.message = message;
+        this.fromId = fromId;
+        this.toId = toId;
+        this.timestamp = timestamp;
+        this.seqId = seqId;
     }
 
     public Message (String message, String fromId) {
