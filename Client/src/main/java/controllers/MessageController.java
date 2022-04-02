@@ -31,6 +31,12 @@ public class MessageController {
         }
     }
 
+    private static MessageController myController = new MessageController();
+
+    public static MessageController shared() {
+        return myController;
+    }
+
     public ArrayList<Message> getMessages() {
         return null;
     }
