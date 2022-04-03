@@ -50,7 +50,7 @@ public class MessageController {
         ArrayList<Message> copy = (ArrayList<Message>) messages.stream()
                 .sorted(Comparator.comparing(Message::getTimestamp)).collect(Collectors.toList());
         ArrayList<Message> mostRecent = new ArrayList<>();
-        for(int i = 2; i > 0;  i--){
+        for(int i = copy.size()-1; i > copy.size()-21; i--){
             mostRecent.add(copy.get(i));
         }
         mostRecent.forEach(System.out::println);
