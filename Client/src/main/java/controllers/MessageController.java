@@ -43,7 +43,7 @@ public class MessageController {
         for (int i =0; i<21; i++){
             messages.add(array[i]);
         }
-//        messages.stream()
+
         ArrayList<Message> copy = (ArrayList<Message>) messages.stream()
                 .sorted(Comparator.comparing(Message::getTimestamp)).collect(Collectors.toList());
         ArrayList<Message> mostRecent = new ArrayList<>();
