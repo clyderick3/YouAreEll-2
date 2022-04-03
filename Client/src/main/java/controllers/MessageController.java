@@ -16,10 +16,7 @@ public class MessageController {
     private MessageController(){
         ServerController serverController = ServerController.shared();
         JSONArray messagesJSON = serverController.messageGet();
-//        Message[] messages = (Message[]) messagesJSON.toArray(new Message[0]);
-//        for (int i = 0; i < messagesJSON.size(); i++) {
-//            messagesSeen.add(messages[i]);
-//        }
+
         for (int i = 0; i<messagesJSON.size(); i++) {
             Object object = messagesJSON.get(i);
             String string = object.toString();
