@@ -1,6 +1,9 @@
 package controllers;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.stream.Collectors;
+
 import models.Id;
 import models.Message;
 import org.json.simple.JSONArray;
@@ -38,8 +41,22 @@ public class MessageController {
     }
 
     public ArrayList<Message> getMessages() {
-        return null;
+        Message[] array = messagesSeen.toArray(new Message[0]);
+        ArrayList<Message> messages = new ArrayList<>();
+        for (int i =0; i<21; i++){
+            messages.add(array[i]);
+        }
+//        messages.stream()
+        ArrayList<Message> copy = (ArrayList<Message>) messages.stream()
+                .sorted(Comparator.comparing(Message::getTimestamp)).collect(Collectors.toList());
+        ArrayList<Message> mostRecent = new ArrayList<>();
+        for(int i = 2; i > 0;  i--){
+            mostRecent.add(copy.get(i));
+        }
+        mostRecent.forEach(System.out::println);
+        return mostRecent;
     }
+
     public ArrayList<Message> getMessagesForId(Id Id) {
         return null;
     }
