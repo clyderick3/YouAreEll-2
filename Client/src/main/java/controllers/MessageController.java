@@ -4,6 +4,9 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Id;
 import models.Message;
 import org.json.simple.JSONArray;
@@ -15,21 +18,26 @@ public class MessageController {
     private final ServerController serverController = ServerController.shared();
 
 
-    private MessageController(){
-        ServerController serverController = ServerController.shared();
-        JSONArray messagesJSON = serverController.messageGet();
+    public MessageController() throws JsonProcessingException {
+        String messageString = String.valueOf(serverController.messageGet());
+        ObjectMapper objectMapper = new ObjectMapper();
+        messagesSeen = objectMapper.readValue(messageString, new TypeReference<>(){});
+        }
 
-        for (int i = 0; i<messagesJSON.size(); i++) {
-            Object object = messagesJSON.get(i);
-            String string = object.toString();
-            String[] messageList = string.split(",");
-            String toID = messageList[0].substring(8);
-            String sequence = messageList[1].substring(11);
-            String message = messageList[2].substring(10);
-            String fromID = messageList[3].substring(9);
-            String timestamp = messageList[4].substring(12);
-            Message messageObject = new Message(message,fromID,toID,timestamp,sequence);
-            messagesSeen.add(messageObject);
+//        ServerController serverController = ServerController.shared();
+//        JSONArray messagesJSON = serverController.messageGet();
+//
+//        for (int i = 0; i<messagesJSON.size(); i++) {
+//            Object object = messagesJSON.get(i);
+//            String string = object.toString();
+//            String[] messageList = string.split(",");
+//            String toID = messageList[0].substring(8);
+//            String sequence = messageList[1].substring(11);
+//            String message = messageList[2].substring(10);
+//            String fromID = messageList[3].substring(9);
+//            String timestamp = messageList[4].substring(12);
+//            Message messageObject = new Message(message,fromID,toID,timestamp,sequence);
+//            messagesSeen.add(messageObject);
         }
     }
 
