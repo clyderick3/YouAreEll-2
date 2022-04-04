@@ -10,8 +10,10 @@ import org.json.simple.JSONArray;
 
 public class MessageController {
 
-    public HashSet<Message> messagesSeen = new HashSet<>(); //TODO change public back to private after testing.
+    private HashSet<Message> messagesSeen = new HashSet<>();
     // why a HashSet??
+    private final ServerController serverController = ServerController.shared();
+
 
     private MessageController(){
         ServerController serverController = ServerController.shared();
