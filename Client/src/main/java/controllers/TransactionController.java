@@ -23,8 +23,9 @@ public class TransactionController {
 
     }
 
-    public List<Message> getMessages() throws IOException, InterruptedException {
-        return msgCtrl.getMessages();
+    public List<Message> getMessages() {
+        List <Message> messages = msgCtrl.getMessages();
+        return messages;
 
     }
 
