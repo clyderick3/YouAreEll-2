@@ -51,14 +51,25 @@ public class MessageController {
         return null;
     }
     public ArrayList<Message> getMessagesFromFriend(Id myId, Id friendId) {
-        return null;
+        ArrayList<Message> msgFromFriend = new ArrayList<>();
+        for (Message m : messagesSeen) {
+            if (m.getFromId().equals(friendId.getGitHub())) && m.getToId().equals(myId.getGithub())){
+    msgFromFriend.add(m);
+            }
+        }
+        return msgFromFriend;
     }
 
-    public Message postMessage(Id myId, Id toId, Message msg) {
+    public Message postMessage(Id myId, Id toId, Message msg) throws JsonProcessingException  {
+        Message msgToSend = new Message("mrising", "mrising", "uh Clyde, you there?");
+        ServerController.shared().messagePost(msgToSend);
         return null;
     }
 
 }
+
+
+
 
 
 //        ServerController serverController = ServerController.shared();
