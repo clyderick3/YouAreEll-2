@@ -33,8 +33,15 @@ public class MessageController {
     }
 
     public ArrayList<Message> getMessagesForId(Id Id) {
-        return null;
+        ArrayList<Message> messages = new ArrayList<>();
+        for (Message m : messagesSeen) {
+            if (m.getFromId().equals(Id.getGithub())) {
+                messages.add(m);
+            }
+        }
+        return messages;
     }
+
     public Message getMessageForSequence(String seq) {
         return null;
     }
