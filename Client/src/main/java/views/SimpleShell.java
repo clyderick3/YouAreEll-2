@@ -19,6 +19,7 @@ public class SimpleShell {
         // yep, make an effort to format things nicely, eh?
         System.out.println(output);
     }
+
     public static void main(String[] args) throws java.io.IOException {
 
         YouAreEll urll = new YouAreEll(new MessageController(), new IdController());
@@ -128,3 +129,4 @@ public class SimpleShell {
 
 
     }
+}
