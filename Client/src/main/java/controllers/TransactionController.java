@@ -1,5 +1,6 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import models.Id;
 import models.Message;
 
@@ -16,8 +17,9 @@ public class TransactionController {
         this.msgCtrl = m;
     }
 
-    public List<Id> getIds() throws IOException, InterruptedException {
-        return idCtrl.getIds();
+    public List<Id> getIds() throws JsonProcessingException {
+        List<Id> ids = idCtrl.getIds();
+        return ids;
 
     }
 
