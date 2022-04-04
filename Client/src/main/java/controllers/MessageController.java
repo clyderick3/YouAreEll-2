@@ -43,6 +43,11 @@ public class MessageController {
     }
 
     public Message getMessageForSequence(String seq) {
+        for (Message m : messagesSeen) {
+            if (m.getSeqId().equals(seq)){
+                return m;
+            }
+        }
         return null;
     }
     public ArrayList<Message> getMessagesFromFriend(Id myId, Id friendId) {
