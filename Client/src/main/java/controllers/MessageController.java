@@ -14,8 +14,8 @@ import org.json.simple.JSONArray;
 public class MessageController {
 
     private HashSet<Message> messagesSeen = new HashSet<>();
-    // why a HashSet??
-    private final ServerController serverController = ServerController.shared();
+
+    private ServerController serverController = ServerController.shared();
 
 
     public MessageController() throws JsonProcessingException {
@@ -29,7 +29,14 @@ public class MessageController {
         for (Message i : messagesSeen) {
             messages.add(i);
         }
-        return messages;
+                ArrayList<Message> copy = (ArrayList<Message>) messages.stream()
+                .sorted(Comparator.comparing(Message::getTimestamp)).collect(Collectors.toList());
+                ArrayList<Message> mostRecent = new ArrayList<>();
+        for(int i = copy.size()-1; i > copy.size()-21; i--){
+            mostRecent.add(copy.get(i));
+        }
+        mostRecent.forEach(System.out::println);
+        return mostRecent;
     }
 
     public ArrayList<Message> getMessagesForId(Id Id) {
@@ -53,8 +60,8 @@ public class MessageController {
     public ArrayList<Message> getMessagesFromFriend(Id myId, Id friendId) {
         ArrayList<Message> msgFromFriend = new ArrayList<>();
         for (Message m : messagesSeen) {
-            if (m.getFromId().equals(friendId.getGitHub())) && m.getToId().equals(myId.getGithub())){
-    msgFromFriend.add(m);
+            if (m.getFromId().equals(friendId.getGitHub()) && m.getToId().equals(myId.getGithub())){
+                msgFromFriend.add(m);
             }
         }
         return msgFromFriend;
@@ -94,13 +101,4 @@ public class MessageController {
 //    public static MessageController shared() {
 //        return myController;
 //    }
-//
-//        ArrayList<Message> copy = (ArrayList<Message>) messages.stream()
-//                .sorted(Comparator.comparing(Message::getTimestamp)).collect(Collectors.toList());
-//        ArrayList<Message> mostRecent = new ArrayList<>();
-//        for(int i = copy.size()-1; i > copy.size()-21; i--){
-//            mostRecent.add(copy.get(i));
-//        }
-//        mostRecent.forEach(System.out::println);
-//        return mostRecent;
 //    }

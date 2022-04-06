@@ -163,10 +163,10 @@ public class ServerController<JsonString> {
 //        // return json
     }
 
-    public JsonString messagePost(Message msg) throws JsonProcessingException {
+    public JsonString messagePost(Message msg, String sourceId) throws JsonProcessingException {
         StringBuilder response = null;
         try {
-            URL url = new URL(rootURL + "/ids");
+            URL url = new URL(rootURL + "/ids" + sourceId + "/messages");
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setConnectTimeout(5000);

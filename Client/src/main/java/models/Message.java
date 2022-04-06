@@ -1,6 +1,9 @@
 package models;
 
-/* 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/*
  * POJO for an Message object
  *
  *   {
@@ -68,11 +71,23 @@ public class Message implements Comparable {
         this.fromId = fromId;
     }
 
-    public String getTimestamp() {
+//    public String getTimestamp() {
+//        return timestamp;
+//    }
+
+//    public String getSeqId() {
+//        return seqId;
+//    }
+
+    @JsonIgnore
+    public String getTimestamp(){
         return timestamp;
     }
 
-    public String getSeqId() {
-        return seqId;
-    }
+    @JsonProperty
+    public void setTimestamp (String timestamp){this.timestamp=timestamp;}
+
+    public String getSeqId() {return seqId;}
+
+    public void setSeqId(String seqId) {this.seqId = seqId;}
 }
